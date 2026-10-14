@@ -8,4 +8,4 @@ const connectDB = async () => {
     console.log(`DataBase Not Connected ${error.message}`);
   }
 };
-connectDB();
+export default connectDB;

@@ -22,7 +22,7 @@ const userLogin = async (req, res) => {
     const token = generateToken(checkUser);
     return res.status(200).json({
       message: "login successful",
-      role: checkUser.roles,
+      role: checkUser.role,
       token,
     });
   } catch (error) {

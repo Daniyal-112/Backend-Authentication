@@ -8,7 +8,7 @@ const getProfile = async (req, res) => {
         message: "User not found",
       });
     }
-    return res.statu(200).json({
+    return res.status(200).json({
       message: "User profile fetch Successfully",
       user,
     });

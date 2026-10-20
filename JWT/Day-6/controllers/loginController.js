@@ -3,7 +3,7 @@ import bcrypt from "bcrypt";
 import {
   generateAccessToken,
   generateRefreshToken,
-} from "../utils/generateToken";
+} from "../utils/generateToken.js";
 
 import {
   cookieOptions,
@@ -15,7 +15,7 @@ const userLogin = async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    const checkUser = await User.findById({
+    const checkUser = await User.findOne({
       email: email.trim().toLowerCase(),
     });
     if (!checkUser) {

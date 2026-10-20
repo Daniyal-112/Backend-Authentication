@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 import User from "../models/user.js";
-import { generateAccessToken } from "../utils/generateToken";
+import { generateAccessToken } from "../utils/generateToken.js";
 
 import {
   ACCESS_TOKEN_MAX_AGE,

@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
 
 const verifyToken = (req, res, next) => {
-  
+
   const token = req.cookies.accessToken;
 
   if (!token) {
@@ -10,7 +10,7 @@ const verifyToken = (req, res, next) => {
     });
   }
   try {
-    const verifyToken = jwt.verify(token, JWT_ACCESS_SECRET);
+    const verifyToken = jwt.verify(token, process.env.JWT_ACCESS_SECRET);
     req.user = verifyToken;
     next();
   } catch (error) {

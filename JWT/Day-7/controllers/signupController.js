@@ -5,10 +5,10 @@ const userSignup = async (req, res) => {
   try {
     const { name, email, password } = req.body;
 
-    const existingUSer = await User.findOne({
-      email: email.trim().toLowercase(),
+    const existingUser = await User.findOne({
+      email: email.trim().toLowerCase(),
     });
-    if (existingUSer) {
+    if (existingUser) {
       return res.status(409).json({
         message: "Email already registered",
       });
@@ -22,11 +22,17 @@ const userSignup = async (req, res) => {
       password: hashedPassword,
     });
 
-    return res.status(200).json({
+    return res.status(201).json({
       message: "Registration successful",
       userId: user._id,
     });
   } catch (error) {
+    if (error.code === 11000) {
+      return res.status(409).json({
+        message: "Email already registered",
+      });
+    }
+    console.error(error);
     return res.status(500).json({
       message: "Registration failed",
     });

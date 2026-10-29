@@ -1,6 +1,9 @@
 import crypto from "crypto";
 import jwt from "jsonwebtoken";
-import { use } from "react";
+import {
+  ACCESS_TOKEN_MAX_AGE,
+  REFRESH_TOKEN_MAX_AGE,
+} from "./cookieOptions.js";
 
 export const generateAccessToken = (user) => {
   return jwt.sign(
@@ -10,7 +13,7 @@ export const generateAccessToken = (user) => {
     },
     process.env.JWT_ACCESS_SECRET,
     {
-      expiresAt: JWT_ACCESS_EXPIRES_IN || "10m",
+      expiresIn: ACCESS_TOKEN_MAX_AGE / 1000,
     },
   );
 };
@@ -23,7 +26,7 @@ export const generateRefreshToken = (user) => {
     },
     process.env.JWT_REFRESH_SECRET,
     {
-      expiresIn: process.env.JWT_REGRESH_EXPIRES_IN || "1d",
+      expiresIn: REFRESH_TOKEN_MAX_AGE / 1000,
     },
   );
 };

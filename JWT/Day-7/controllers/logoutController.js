@@ -17,7 +17,7 @@ const userLogout = async (req, res) => {
       message: "Logout Successful",
     });
   } catch (error) {
-    return res.staus(500).json({
+    return res.status(500).json({
       message: "Logout failed",
     });
   }
@@ -30,11 +30,12 @@ const logoutAllDevices = async (req, res) => {
     res.clearCookie("accessToken", cookieOptions);
     res.clearCookie("refreshToken", cookieOptions);
 
-    return res.staus(200).json({
+    return res.status(200).json({
       message: "Logout from all devices successful",
     });
   } catch (error) {
-    return res.staus(500).json({
+    console.error(error);
+    return res.status(500).json({
       message: "Logout failed",
     });
   }

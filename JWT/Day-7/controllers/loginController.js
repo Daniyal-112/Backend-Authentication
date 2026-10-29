@@ -24,7 +24,7 @@ const userLogin = async (req, res) => {
 
     if (!checkUser) {
       return res.status(401).json({
-        message: "Invalid email",
+        message: "Invalid email or password",
       });
     }
 
@@ -32,7 +32,7 @@ const userLogin = async (req, res) => {
 
     if (!isMatch) {
       return res.status(401).json({
-        message: "Invalid password",
+        message: "Invalid email or password",
       });
     }
 
@@ -56,6 +56,7 @@ const userLogin = async (req, res) => {
       role: checkUser.role,
     });
   } catch (error) {
+    console.error(error);
     return res.status(500).json({
       message: "Login failed",
     });
